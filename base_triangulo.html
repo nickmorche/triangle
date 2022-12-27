@@ -6,6 +6,8 @@
         <meta name="dcterms.created" content="Fri, 27 Jun 2014 21:02:23 GMT">
         <meta name="description" content="">
         <meta name="keywords" content="">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <title>Sistema triângulo drag-drop</title>
         <script src="script.js" defer></script>
     	<style>
@@ -43,9 +45,9 @@
                 -webkit-transform: rotate(360deg);
                 -o-transform: rotate(360deg);
                 /* Torna movivel o triângulo */
-                position: absolute;
+                /* position: absolute; 
                 left: 0;
-                top: 0;
+                top: 0; */
             }
 
             /* Edita o paragrafo do triângulo */
@@ -66,7 +68,7 @@
                 /* box-shadow: 0 0 10px #5f4b8b, 0 0 40px #5f4b8b, 0 0 70px #5f4b8b; */
                 border-style: inset;
                 border-width: 0 100px 173.2px 100px;
-                border-color: transparent transparent rgba(95, 75, 139, 0.5) transparent;
+                border-color: transparent transparent rgb(136, 100, 214) transparent;
                 
             }
 
@@ -77,10 +79,9 @@
             }
 
     	</style>
-
       </head>
       <body>
-        <div id="canvas" ondragover="drag_over(event)" ondrop="drop(event)">
+        <div id="canvas">
         </div> 
       </body>
    </html>
