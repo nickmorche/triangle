@@ -6,56 +6,18 @@
         <meta name="dcterms.created" content="Fri, 27 Jun 2014 21:02:23 GMT">
         <meta name="description" content="">
         <meta name="keywords" content="">
-        <title></title>
-        
-        <!--[if IE]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+        <title>Sistema triângulo drag-drop</title>
+  
     	<style>
-            /* #node {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100px;
-                height: 100px;
-                padding: 10px;
-                color:white;
-                text-align: center;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                text-decoration: none;
-                text-transform: uppercase;
-                transition: 0.4s;
-                letter-spacing: 4px;
-                overflow: hidden;
-                border: 2px solid #5f4b8b;
-                border-radius:30px;
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
-            }
 
-            .node_triangle {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 0; 
-                height: 0; 
-                border-left: 75px solid transparent;
-                border-right: 75px solid transparent;
-                border-bottom: 140px solid #5f4b8b;
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
-
-            } */
-
-            
             body {
                 margin: 0;
                 padding: 0;
                 width: 100%;
                 height: 100%;
             }
+
+            /* Quadro onde os triângulos são possíveis mover */
             #canvas {
                 position: absolute;
                 background-color: black;
@@ -66,14 +28,6 @@
                 margin: 3% 4%;
             }
 
-            .triangle {
-                width: 0; 
-                height: 0; 
-                border-left: 5px solid transparent;
-                border-right: 5px solid transparent;
-                
-                border-bottom: 5px solid black;
-            }
             
             .node {
                 /* torna o bagulho em triângulo */
@@ -112,41 +66,6 @@
                 border-width: 0 100px 173.2px 100px;
                 border-color: transparent transparent rgba(95, 75, 139, 0.5) transparent;
                 
-            }
-
-            /* .shadow {
-                
-            } */
-
-            .triangulo-wrapper{
-                width: 180px;
-                height: 180px;
-                clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
-                background-color: #ff00ff;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .triangulo{
-                width: calc(180px - 30px);
-                height: calc(180px - 30px);
-                /* background-color: hsl(210, 50%, 14%); */
-                background-color: #5f4b8b;
-                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-                margin-top: 10px;
-                /* filter: blur(115px) drop-shadow(-10px -10px 75px #ff00ff) */
-                display: flex;
-                flex-wrap: nowrap;
-                align-content: flex-end;
-                justify-content: space-evenly;
-                align-items: center;
-
-            }
-
-            .triangulo p {
-                color: white;
-                text-transform: uppercase;
             }
 
             .shadow:hover{
