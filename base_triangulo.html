@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
+        <meta name="dcterms.created" content="Fri, 27 Jun 2014 21:02:23 GMT">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <title></title>
+        
+        <!--[if IE]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    	<style>
+            /* #node {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100px;
+                height: 100px;
+                padding: 10px;
+                color:white;
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: 0.4s;
+                letter-spacing: 4px;
+                overflow: hidden;
+                border: 2px solid #5f4b8b;
+                border-radius:30px;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            .node_triangle {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 0; 
+                height: 0; 
+                border-left: 75px solid transparent;
+                border-right: 75px solid transparent;
+                border-bottom: 140px solid #5f4b8b;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+
+            } */
+
+            
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #canvas {
+                position: absolute;
+                background-color: black;
+                left: 50;
+                top: 50;
+                width: 95%;
+                height: 100%;
+                margin: 3% 4%;
+            }
+
+            .triangle {
+                width: 0; 
+                height: 0; 
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                
+                border-bottom: 5px solid black;
+            }
+            
+            .node {
+                /* torna o bagulho em triângulo */
+                width: 0px;
+                height: 0px;
+                border-style: inset;
+                border-width: 0 100px 173.2px 100px;
+                border-color: transparent transparent #5f4b8b transparent;
+                float: left;
+                transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                /* Torna movivel o triângulo */
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .node p {
+                text-align: center;
+                top: 80px;
+                left: -47px;
+                position: relative;
+                width: 93px;
+                height: 93px;
+                margin: 0px;
+            }
+
+            .node:hover{
+                color:white; 
+                /* background: #5f4b8b; */ 
+                /* box-shadow: 0 0 10px #5f4b8b, 0 0 40px #5f4b8b, 0 0 70px #5f4b8b; */
+                border-style: inset;
+                border-width: 0 100px 173.2px 100px;
+                border-color: transparent transparent rgba(95, 75, 139, 0.5) transparent;
+                
+            }
+
+            /* .shadow {
+                
+            } */
+
+            .triangulo-wrapper{
+                width: 180px;
+                height: 180px;
+                clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+                background-color: #ff00ff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .triangulo{
+                width: calc(180px - 30px);
+                height: calc(180px - 30px);
+                /* background-color: hsl(210, 50%, 14%); */
+                background-color: #5f4b8b;
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                margin-top: 10px;
+                /* filter: blur(115px) drop-shadow(-10px -10px 75px #ff00ff) */
+                display: flex;
+                flex-wrap: nowrap;
+                align-content: flex-end;
+                justify-content: space-evenly;
+                align-items: center;
+
+            }
+
+            .triangulo p {
+                color: white;
+                text-transform: uppercase;
+            }
+
+            .shadow:hover{
+                width: 10px;
+                filter: drop-shadow(10px 10px 200px #5f4b8b) drop-shadow(-10px -10px 50px #5f4b8b);
+            }
+
+    	</style>
+    	<script>
+            /**
+             * Ao começar a mover o elemento, irá executar essa função
+             */
+            function drag_start(event) {
+                // Captura as propriedades de estilização CSS do elemento
+                var style = window.getComputedStyle(event.target, null); 
+                // Configura uma string que armazena a posição Y e posição X
+                var str = (parseInt(style.getPropertyValue("left")) - event.clientX) + ',' + (parseInt(style.getPropertyValue("top")) - event.clientY) + ',' + event.target.id;
+                // Armazena essa variável no dataTransfer
+                event.dataTransfer.setData("Text", str);
+                // Torna invisivel o 'ghost' da imagem
+                event.dataTransfer.setDragImage(event.target, window.outerWidth, window.outerHeight); 
+            }
+
+            /**
+             * Ao largar o elemento, executa essa função
+             */
+            function drop(event) {
+                // Pega os dados do dataTransfer da posição
+                var offset = event.dataTransfer.getData("Text").split(',');
+                // Pega o elemento
+                var dm = document.getElementById(offset[2]);
+                // Configura a posição X e posição Y
+                dm.style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
+                dm.style.top = (event.clientY + parseInt(offset[1], 10)) + 'px';
+                event.preventDefault();
+                return false;
+            }
+
+            function drag_over(event) {
+                // Permite largar o objeto
+                event.preventDefault();
+                return false;
+            }
+            
+    	</script>
+      </head>
+      <body>
+        <div id="canvas" ondragover="drag_over(event)" ondrop="drop(event)">
+            <div id='txt' class="node" draggable="true" ondragstart="drag_start(event)">
+                <p>Ideia do caralho<p>
+            </div>
+        </div> 
+      </body>
+   </html>
