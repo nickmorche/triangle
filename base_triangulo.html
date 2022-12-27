@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="keywords" content="">
         <title>Sistema triângulo drag-drop</title>
-  
+        <script src="script.js" defer></script>
     	<style>
 
             body {
@@ -77,49 +77,10 @@
             }
 
     	</style>
-    	<script>
-            /**
-             * Ao começar a mover o elemento, irá executar essa função
-             */
-            function drag_start(event) {
-                // Captura as propriedades de estilização CSS do elemento
-                var style = window.getComputedStyle(event.target, null); 
-                // Configura uma string que armazena a posição Y e posição X
-                var str = (parseInt(style.getPropertyValue("left")) - event.clientX) + ',' + (parseInt(style.getPropertyValue("top")) - event.clientY) + ',' + event.target.id;
-                // Armazena essa variável no dataTransfer
-                event.dataTransfer.setData("Text", str);
-                // Torna invisivel o 'ghost' da imagem
-                event.dataTransfer.setDragImage(event.target, window.outerWidth, window.outerHeight); 
-            }
 
-            /**
-             * Ao largar o elemento, executa essa função
-             */
-            function drop(event) {
-                // Pega os dados do dataTransfer da posição
-                var offset = event.dataTransfer.getData("Text").split(',');
-                // Pega o elemento
-                var dm = document.getElementById(offset[2]);
-                // Configura a posição X e posição Y
-                dm.style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
-                dm.style.top = (event.clientY + parseInt(offset[1], 10)) + 'px';
-                event.preventDefault();
-                return false;
-            }
-
-            function drag_over(event) {
-                // Permite largar o objeto
-                event.preventDefault();
-                return false;
-            }
-            
-    	</script>
       </head>
       <body>
         <div id="canvas" ondragover="drag_over(event)" ondrop="drop(event)">
-            <div id='txt' class="node" draggable="true" ondragstart="drag_start(event)">
-                <p>Ideia do caralho<p>
-            </div>
         </div> 
       </body>
    </html>
