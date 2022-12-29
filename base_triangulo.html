@@ -11,23 +11,31 @@
         <title>Sistema triângulo drag-drop</title>
         <script src="script.js" defer></script>
     	<style>
-
+            html, body, #geral { height: 100% }
             body {
                 margin: 0;
                 padding: 0;
                 width: 100%;
-                height: 100%;
+            }
+
+            body > #geral { 
+                height: auto; 
+                min-height: 95%;
+                height: 95%;
+                display: flex;
+                margin: 3% 4%;
             }
 
             /* Quadro onde os triângulos são possíveis mover */
             #canvas {
-                position: absolute;
+                /* position: absolute; */
                 background-color: black;
-                left: 50;
-                top: 50;
-                width: 95%;
-                height: 100%;
-                margin: 3% 4%;
+                /* left: 50;
+                top: 50; */
+                /* width: 95%; */
+                width: 75%;
+                height: 95%;
+                overflow: scroll;
             }
 
             
@@ -44,10 +52,9 @@
                 -moz-transform: rotate(360deg);
                 -webkit-transform: rotate(360deg);
                 -o-transform: rotate(360deg);
-                /* Torna movivel o triângulo */
-                /* position: absolute; 
-                left: 0;
-                top: 0; */
+                left: 30%;
+                top: 50%;
+                position: relative;
             }
 
             /* Edita o paragrafo do triângulo */
@@ -78,10 +85,24 @@
                 filter: drop-shadow(10px 10px 200px #5f4b8b) drop-shadow(-10px -10px 50px #5f4b8b);
             }
 
+            #menuComandos{
+                width:20%;
+                display: flex;
+                flex-direction: column;
+                margin-right: 5%;
+            }
+            
+      
     	</style>
       </head>
       <body>
-        <div id="canvas">
-        </div> 
+        <div id="geral">
+            <div id="menuComandos">
+                <button id="add">Add</button>
+                <button id="del">Del</button>
+                <button id="cln">Clone</button>
+            </div>
+            <div id="canvas"></div> 
+        </div>
       </body>
    </html>
